@@ -2,12 +2,18 @@ This repo introduces a lot of concepts on Convolutional Neural Network.
 As I advance I create new files that will be explained here.
 
 The structure of the folders is important. More for the datasets where the labels are obtained for position.
-Folders:
+
+Folder sctructure:
+
     cnn -> Contains the CNN architectures
+    
     datasets -> Contains the images to train the cnn. [animals, flowers17, Smiles]
+    
     outputs -> 
+    
         -> augmentedImages : here I saved augmented Images produces by the script VisualizingDataAugmentation.py
         -> hdf5 files are serialized of trained models each one specifies the cnn used and the dataset used
+        
     processors-> This files are used to process the images when training the data. 
 
     The rest of the files are used to train and test the model.
