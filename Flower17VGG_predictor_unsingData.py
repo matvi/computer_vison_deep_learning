@@ -3,6 +3,7 @@
 
 #To run the file
 # python .\Flower17VGG_predictor_unsingData.py --dataset C:\gitProjects\perceptron\datasets\flowers17 --model C:\gitProjects\perceptron\outputs\MiniVGGFlowers17.hdf5
+# python .\Flower17VGG_predictor_unsingData.py --dataset C:\gitProjects\perceptron\datasets\flowers17 --model C:\gitProjects\perceptron\outputs\MiniVGGFlowers17_unsingedData.hdf5 --isize = 64
 import argparse
 from keras.models import load_model
 from imutils import paths
@@ -12,11 +13,12 @@ from processors.DataLoader import DataLoader
 from processors.ImageToArray import ImageToArray
 import numpy as np
 import matplotlib.pyplot as plt
-from DataAugmentation import DataAug
+from utils.DataAugmentation import DataAug
 
 ap = argparse.ArgumentParser()
 ap.add_argument("-d", "--dataset", required = True, help= "path to the dataset")
 ap.add_argument("-m", "--model", required=True, help="path to the VGG model serialized as hdf5 ")
+ap.add_argument("-s", "--isize", type=int, help="image Size", default=32 )
 
 args = vars(ap.parse_args())
 
@@ -26,9 +28,11 @@ pathImages = list(paths.list_images(dataset))
 random.shuffle(pathImages)
 
 
+
 #we need to process the images so we can feed the model
 #first we create the processors
-p_size = Resize(32,32)
+im_size = args["isize"]
+p_size = Resize(im_size,im_size)
 p_iArr = ImageToArray()
 dataloader = DataLoader(preprocessors=[p_size, p_iArr])
 #second we apply the processors to the images, the result are the images Resized and as numpy arrays with their corresponding labels.

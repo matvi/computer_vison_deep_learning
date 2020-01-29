@@ -20,6 +20,7 @@ from keras.optimizers import SGD
 from imutils import paths
 import matplotlib.pyplot as plt
 import os
+from sklearn.metrics import classification_report
 
 ap = argparse.ArgumentParser()
 ap.add_argument("--images", "-i", required = True, help ="path to the dataset")
@@ -37,7 +38,7 @@ dataloader = DataLoader(preprocessors=[processor_size, processor_imArr])
 (data, labels) = dataloader.load(imagesPath)
 
 data = data.astype("float") / 255.0
-(trainX, testX, trainY, testY) = train_test_split(data, labels, ran)
+(trainX, testX, trainY, testY) = train_test_split(data, labels)
 
 #one hot encoding
 lb = LabelBinarizer()
@@ -59,6 +60,11 @@ sgd = SGD(lr=lr, momentum= momentum, decay= decadey, nesterov=True)
 model.compile(optimizer = sgd, loss= "categorical_crossentropy", metrics=["accuracy"])
 
 H = model.fit(trainX, trainY, validation_data=(testX, testY), batch_size=batchSize, epochs=epochs)
+
+#print prediction model
+predictions = model.predict(testX,testY)
+print(classification_report(testY.argmax(axis=1), predictions.argmax(axis=1), tarjet_names=classes))
+
 
 model.save(args["output"])
 

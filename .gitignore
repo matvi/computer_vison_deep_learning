@@ -1,0 +1,27 @@
+# Don't track content of these folders
+__pycache__
+datasets/
+outputs/
+
+
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.hdf5
+*.model
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
