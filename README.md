@@ -2,12 +2,18 @@ This repo introduces a lot of concepts on Convolutional Neural Network.
 As I advance I create new files that will be explained here.
 
 The structure of the folders is important. More for the datasets where the labels are obtained for position.
-Folders:
+
+Folder sctructure:
+
     cnn -> Contains the CNN architectures
+    
     datasets -> Contains the images to train the cnn. [animals, flowers17, Smiles]
+    
     outputs -> 
+    
         -> augmentedImages : here I saved augmented Images produces by the script VisualizingDataAugmentation.py
         -> hdf5 files are serialized of trained models each one specifies the cnn used and the dataset used
+        
     processors-> This files are used to process the images when training the data. 
 
     backpropagation-> Containts examples of backpropagation
@@ -45,3 +51,7 @@ Folders:
         FineTunningVGG16.py : this explains FineTunning which is a transfer learning technique where que use a pretrained model like VGG16 to train it in our own dataset to obtain higher accuracy.
 
         
+        Scripts:
+        VisualizingDataAugmentation -> this file is used to take an image an produce augmented images. The results are stored in the outputs/augmentedImages
+        VisualizeArhcitecture -> this file is used to visualize the CNN architecture generating an image in the output. As an example you can open the MiniVGG_architecture.png
+        DataAugmentation-> this scripts is used to generate augmented images given a images as input. In the flowers17VGG_predictor_unsingData is used to generate new images to predict what the image is using unsined images.
